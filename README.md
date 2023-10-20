@@ -17,7 +17,12 @@ dotnet ef database update --environment Production
 + System.Data.SqlClient
 
 ## ClassLibrary1
-+ 
++ Microsoft.Extensions.Configuration
++ Microsoft.Extensions.Configuration.FileExtensions
++ Microsoft.Extensions.Configuration.Json
++ Microsoft.EntityFrameworkCore.Design
++ Microsoft.EntityFrameworkCore.SqlServer
++ Microsoft.EntityFrameworkCore.Tools
 
 ## ConsoleApp1
 + Microsoft.Extensions.Configuration
@@ -47,6 +52,12 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 dotnet ef database update --environment Production
 ```
+
+## Unit Testing
++ xUnit Test Project
+
+## Integration Testing
++ SqlLocalDB
 
 # References
 + CRUD with Blazor in .NET 8 🔥 Video & Code Inside 🚀
