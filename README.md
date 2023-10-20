@@ -1,11 +1,13 @@
 ﻿# NET 8
 + .NET Core 7.0
 + .NET Core 8.0
-+ ASP.NET Core
++ ASP.NET Core MVC
++ ASP.NET Core Web API
 + EF Core
++ SQL Server
 + ClassLibrary1: Class library
++ ConsoleApp1: Console Application
 + WebApplication1: ASP.NET Core Web App (Model-View-Controller)
-+ ConsoleApp1: Console Application 
 + xUnitTestProject1: xUnit Test Project
 
 ```
