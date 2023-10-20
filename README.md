@@ -64,6 +64,7 @@ dotnet ef database update --environment Production
 
 ## Integration Testing
 + SqlLocalDB
++ SQL Server Express LocalDB
 
 # References
 + CRUD with Blazor in .NET 8 🔥 Video & Code Inside 🚀
@@ -72,5 +73,4 @@ dotnet ef database update --environment Production
  
 + Integration Testing with Entity Framework Core and SQL Server
 + https://www.davepaquette.com/archive/2016/11/27/integration-testing-with-entity-framework-core-and-sql-server.aspx
-+ https://github.com/AspNetMonsters/EntityFrameworkCoreIntegrationTest
 + https://github.com/gtechsltn/EntityFrameworkCoreIntegrationTest
