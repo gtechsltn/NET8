@@ -1,4 +1,8 @@
 ﻿# NET 8
++ .NET Core 7.0
++ .NET Core 8.0
++ ASP.NET Core
++ EF Core
 + ClassLibrary1: Class library
 + WebApplication1: ASP.NET Core Web App (Model-View-Controller)
 + ConsoleApp1: Console Application 
