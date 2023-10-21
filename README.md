@@ -71,9 +71,12 @@ dotnet ef database update --environment Production
 ```
 
 ## Paging, Sorting, Searching
-+ https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-7.0
-+ https://codewithmukesh.com/blog/pagination-in-aspnet-core-webapi/
 + https://code-maze.com/paging-aspnet-core-webapi/
++ https://codewithmukesh.com/blog/pagination-in-aspnet-core-webapi/
++ https://www.marcoalbasini.com/2021/05/search-pagination-and-sorting-in-asp-net-core/?lang=en
++ https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page?view=aspnetcore-7.0
++ https://www.codeproject.com/Articles/5061500/ASP-NET-Core-CRUD-Operations-With-Paging-Sorting-S
++ https://www.c-sharpcorner.com/article/implement-crud-operations-with-sorting-searching-and-paging-using-ef-core-in-as/
 
 ## Unit Testing
 + xUnit Test Project
