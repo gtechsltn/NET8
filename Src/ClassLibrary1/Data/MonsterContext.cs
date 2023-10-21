@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClassLibrary1.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 //Microsoft.Extensions.Configuration.FileExtensions     <- .SetBasePath(Directory.GetCurrentDirectory())
 //Microsoft.Extensions.Configuration.Json               <- .AddJsonFile("appsettings.json")
 
-namespace ClassLibrary1
+namespace ClassLibrary1.Data
 {
     public class MonsterContext : DbContext
     {
@@ -48,13 +49,5 @@ namespace ClassLibrary1
             return _context.Monsters.FromSqlRaw("SELECT Id, Name, IsScary, Colour FROM Monsters WHERE IsScary = {0}", true);
         }
 
-    }
-
-    public class Monster
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool IsScary { get; set; }
-        public string Colour { get; set; }
     }
 }

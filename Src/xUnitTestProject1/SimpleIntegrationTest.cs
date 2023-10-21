@@ -1,5 +1,5 @@
-
-using ClassLibrary1;
+using ClassLibrary1.Data;
+using ClassLibrary1.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

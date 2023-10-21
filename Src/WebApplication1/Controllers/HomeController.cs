@@ -1,4 +1,5 @@
-﻿using ClassLibrary1;
+﻿using ClassLibrary1.Data;
+using ClassLibrary1.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
@@ -8,10 +9,14 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMonsterService _monsterService;
         private readonly MonsterContext _monsterContext;
-        public HomeController(ILogger<HomeController> logger, MonsterContext monsterContext)
+        public HomeController(ILogger<HomeController> logger,
+            IMonsterService monsterService,
+            MonsterContext monsterContext)
         {
             _logger = logger;
+            _monsterService = monsterService;
             _monsterContext = monsterContext;
         }
 

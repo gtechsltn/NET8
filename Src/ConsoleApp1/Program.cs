@@ -1,5 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-using ClassLibrary1;
+﻿using ClassLibrary1.Data;
+using ClassLibrary1.Entities;
 using ConsoleApp1;
 using Dapper;
 using Microsoft.Data.SqlClient;
