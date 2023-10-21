@@ -1,7 +1,13 @@
 ﻿# NET 8
++ .NET Core 7.0
++ .NET Core 8.0
++ ASP.NET Core MVC
++ ASP.NET Core Web API
++ EF Core
++ SQL Server
 + ClassLibrary1: Class library
++ ConsoleApp1: Console Application
 + WebApplication1: ASP.NET Core Web App (Model-View-Controller)
-+ ConsoleApp1: Console Application 
 + xUnitTestProject1: xUnit Test Project
 + BlazorServerApp1: Blazor Server App
 + BlazorWebAssembly1: Blazor Web Assembly
@@ -74,6 +80,7 @@ dotnet ef database update --environment Production
 
 ## Integration Testing
 + SqlLocalDB
++ SQL Server Express LocalDB
 
 # NET 8
 + CRUD with Blazor in .NET 8 🔥 Video & Code Inside 🚀
@@ -95,5 +102,4 @@ dotnet ef database update --environment Production
 # References
 + Integration Testing with Entity Framework Core and SQL Server
 + https://www.davepaquette.com/archive/2016/11/27/integration-testing-with-entity-framework-core-and-sql-server.aspx
-+ https://github.com/AspNetMonsters/EntityFrameworkCoreIntegrationTest
 + https://github.com/gtechsltn/EntityFrameworkCoreIntegrationTest
