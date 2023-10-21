@@ -1,23 +1,37 @@
 ﻿using ClassLibrary1.Data;
 using ClassLibrary1.Entities;
+using ClassLibrary1.Services;
 using ConsoleApp1;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Text;
 
+// Root Directory
 Console.WriteLine($"Launched from {Environment.CurrentDirectory}");
 
+// Configuration
 IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-var connString = configuration.GetConnectionString(nameof(MonsterContext));
+// Connection String
+var connectionString = configuration.GetConnectionString(nameof(MonsterContext));
+Console.WriteLine($"Connection String is: {connectionString}");
 
-Console.WriteLine($"Connection String is: {connString}");
+// Setup our Dependency Injection
+var serviceProvider = new ServiceCollection()
+                .AddDbContext<MonsterContext>(options =>
+                 {
+                    options.UseSqlServer(connectionString);
+                 })
+                .AddSingleton<IConfiguration>(configuration)
+                .AddScoped<IMonsterService, MonsterService>()
+                .BuildServiceProvider();
 
 const string sqlTextSelectAllTables = "select * from sys.tables";
 const string sqlTextSelectAllColumns = @"
@@ -70,13 +84,13 @@ HashSet<string> columnNames = new HashSet<string>();
 HashSet<string> dataTypes = new HashSet<string>();
 
 sb.Length = 0; // Reset String Builder
-using (SqlConnection conn = new SqlConnection(connString))
+using (SqlConnection conn = new SqlConnection(connectionString))
 {
     conn.Open();
     sysTables = conn.Query<SysTable>(sql: sqlTextSelectAllTables).ToList();
     for (int i = 0; i < sysTables.Count; i++)
-    { 
-        SysTable sysTable = sysTables[i];    
+    {
+        SysTable sysTable = sysTables[i];
         string tableName = sysTable.name;
         sb.AppendLine("------------------------------");
         sb.AppendLine($"Table: {tableName}");
@@ -128,7 +142,7 @@ Process.Start("notepad.exe", strFilePathDataTypes);
 // https://stackoverflow.com/questions/65110479/how-to-get-values-from-appsettings-json-in-a-console-application-using-net-core
 
 var monsterContextOptionsBuilder = new DbContextOptionsBuilder<MonsterContext>()
-    .UseSqlServer(connString)
+    .UseSqlServer(connectionString)
     .Options;
 
 using (var monsterContext = new MonsterContext(monsterContextOptionsBuilder))
@@ -143,6 +157,20 @@ using (var monsterContext = new MonsterContext(monsterContextOptionsBuilder))
 
     var monsters = monsterContext.Monsters.ToList();
     foreach (var monster in monsters)
+    {
+        Console.WriteLine($"Hello {monster.Name}");
+    }
+}
+
+// DI in a console application using .NET Core?
+// https://siddharthshanker.com/blog/programming/setup-dependency-injection-in-dot-net-core-console-application/
+
+var monsterService = serviceProvider.GetRequiredService<IMonsterService>();
+
+if (monsterService != null)
+{
+    var paginationMonsters = await monsterService.GetMonsterListAsync(1, 10);
+    foreach (var monster in paginationMonsters)
     {
         Console.WriteLine($"Hello {monster.Name}");
     }

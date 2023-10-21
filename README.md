@@ -22,6 +22,13 @@
 + Microsoft.Extensions.Configuration.Json               <- .AddJsonFile("appsettings.json")
 
 
+## Adding Dependency Injection to a Console App in .Net 7
++ https://pmichaels.net/di-console-app/
+```
+Install-Package Microsoft.Extensions.DependencyInjection
+Install-Package Microsoft.Extensions.Hosting
+```
+
 ## Connection Strings
 ```
 Server=.;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
@@ -63,13 +70,9 @@ public class MonsterContextFactory : IDesignTimeDbContextFactory<MonsterContext>
 }
 ```
 
-## Migrations
+## Git Ignore
 ```
 dotnet new gitignore --force
-dotnet tool update --global dotnet-ef
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-dotnet ef database update --environment Production
 ```
 
 ## SQL Server
@@ -101,15 +104,26 @@ A WinForms Demo app for the free Poor Man's T-SQL Formatter library
 + Dapper
 + Dapper.Contrib
 
-## EF Core
-+ Need to Update EF Core Tools
+## Environment
+```
+dotnet ef database update --environment Development
+dotnet ef database update --environment Staging
+dotnet ef database update --environment Production
+```
+
+## EF Core Tools
+
+Need to Update EF Core Tools
 ```
 dotnet tool update --global dotnet-ef
 ```
-+ Migrations
+
+## Migrations
 ```
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+dotnet ef database update --environment Development
+dotnet ef database update --environment Staging
 dotnet ef database update --environment Production
 ```
 
