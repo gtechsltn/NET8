@@ -21,6 +21,49 @@
 + Microsoft.Extensions.Configuration.FileExtensions     <- .SetBasePath(Directory.GetCurrentDirectory())
 + Microsoft.Extensions.Configuration.Json               <- .AddJsonFile("appsettings.json")
 
+
+## Connection Strings
+```
+Server=.;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
+Server=localhost;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
+Server=(localdb)\\v11.0;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
+Server=(localdb)\\ProjectsV13;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
+Server=(localdb)\\mssqllocaldb;Database=mssql;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true;
+```
+
+## DbContext
+```
+public class MonsterContext : DbContext
+{
+    public MonsterContext(DbContextOptions<MonsterContext> options) : base(options)
+    {
+    }
+
+    public DbSet<Monster> Monsters { get; set; }
+}
+```
+
+## IDesignTimeDbContextFactory
+```
+public class MonsterContextFactory : IDesignTimeDbContextFactory<MonsterContext>
+{
+    public MonsterContext CreateDbContext(string[] args)
+    {
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        var dbContextOptionsBuilder = new DbContextOptionsBuilder<MonsterContext>();
+        var connectionString = configuration.GetConnectionString(nameof(MonsterContext));
+        dbContextOptionsBuilder.UseSqlServer(connectionString);
+
+        return new MonsterContext(dbContextOptionsBuilder.Options);
+    }
+}
+```
+
+## Migrations
 ```
 dotnet new gitignore --force
 dotnet tool update --global dotnet-ef

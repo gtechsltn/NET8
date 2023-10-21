@@ -34,20 +34,4 @@ namespace ClassLibrary1.Data
             return new MonsterContext(dbContextOptionsBuilder.Options);
         }
     }
-
-    public class ScaryMonstersQuery
-    {
-        private MonsterContext _context;
-
-        public ScaryMonstersQuery(MonsterContext context)
-        {
-            _context = context;
-        }
-
-        public IEnumerable<Monster> Execute()
-        {
-            return _context.Monsters.FromSqlRaw("SELECT Id, Name, IsScary, Colour FROM Monsters WHERE IsScary = {0}", true);
-        }
-
-    }
 }
